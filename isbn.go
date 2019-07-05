@@ -1,7 +1,6 @@
 package isbn
 
 import (
-	"fmt"
 	"github.com/sereiner/lib/types"
 	"strings"
 )
@@ -23,11 +22,11 @@ func NewIsbn(isbn string) *Isbn {
 	}
 
 	code := i.removeChecksum()
-	fmt.Println(code)
+	//fmt.Println(code)
 	code = i.removeProductCode(code)
-	fmt.Println(code)
+	//fmt.Println(code)
 	code = i.removeCountryCode(code)
-	fmt.Println(code)
+	//fmt.Println(code)
 	return i
 }
 
@@ -55,7 +54,7 @@ func (i *Isbn) removeCountryCode(code string) string {
 
 	for _, v := range prefixes {
 		if v.Prefix == i.product {
-			fmt.Println(v)
+			//fmt.Println(v)
 			rules = v.Rules
 			break
 		}
@@ -64,7 +63,7 @@ func (i *Isbn) removeCountryCode(code string) string {
 	for _, v := range rules {
 		ra := strings.Split(v.Range, "-")
 		if types.GetInt(first7) >= types.GetInt(ra[0]) && types.GetInt(first7) <= types.GetInt(ra[1]) {
-			fmt.Println(ra)
+			//fmt.Println(ra)
 			length = types.GetInt(v.Length)
 		}
 	}
